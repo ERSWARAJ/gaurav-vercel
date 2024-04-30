@@ -16,6 +16,8 @@ let sequelize;
 (async () => {
   sequelize = new Sequelize(process.env.DATABASE_URL);
   if (env === options.server.PRODUCTION) {
+    config.dialectModule = require('mysql2')
+    console.log('config', config);
     sequelize = new Sequelize(process.env.DATABASE_URL, config);
   } else {
     sequelize = new Sequelize(
